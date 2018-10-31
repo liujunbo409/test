@@ -76,7 +76,7 @@
         methods:{
             submit : function(id, password){
                 //window.location.href = "../public/mypage?stuid=" + id ;
-                if (vm.studentid == "" || vm.password =="")
+                if (vm.studentid == "" && vm.password =="")
                 {
                     alert("学号或密码不能为空");
                     return false;
@@ -86,7 +86,7 @@
                 //     alert("学号或密码不能为空");
                 //     return false;
                 // }
-                location.assign("../public/mypage?stuid=" + id );
+                location.assign("../public/mypage?stuid=" + id +"&flag=login");
     }
         }
     });

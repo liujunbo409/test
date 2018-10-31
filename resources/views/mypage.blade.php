@@ -59,7 +59,8 @@
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <body bgcolor="#808080">
 <div id="mypage" class="index">
-    <p>学生ID ：</p><input  v-model="studentid" placeholder="请输入学号！" >
+    <h1>我的信息</h1>
+    <p>学生ID ：</p><input  v-model="studentid" placeholder="请输入学号！"  disabled="true">
     <p>学生名字 ：</p><input  v-model="studentname" placeholder="请输入姓名！" >
     <p>学生所属学校 ：</p><select v-model="selected" name="fruit">
         <option value="">选择一个学校</option>
@@ -69,35 +70,24 @@
     <input type="radio"  v-model="sex" value="1">
         <label for="1">男</label>
     <input type="radio"  v-model="sex" value="2">
-        <label for="2">女</label>
-    <a href="index">返回</a>
+        <label for="2">女</label><br/>
+    <button v-on:click="updateData(studentid, studentname, selected, sex)">更新个人信息</button><br/><a href="index">返回首页</a>
 <script>
-    var myproduct = {};
     var vm = new Vue({
         el: '#mypage',
         data: {
-            active: myproduct,
-            items: {},
             studentid : '{{$data['studentid']}}',
             studentname: '{{$data['studentname']}}',
             selected : '{{$data['school']}}',
             sex : '{{$data['sex']}}',
         },
-        {{--mounted: function () {--}}
-            {{--axios.get('{{asset('api/test')}}')--}}
-                {{--.then(function (res) {--}}
-                    {{--console.log(JSON.stringify(res.data.ret));--}}
-                    {{--vm.studentname=JSON.stringify(res.data.ret.studentname);--}}
-                    {{--vm.selected=JSON.stringify(res.data.ret.school);--}}
-                    {{--vm.sex=JSON.stringify(res.data.ret.sex);--}}
-                    {{--vm.checkednames=JSON.stringify(res.data.ret.checkednames);--}}
-
-                {{--})--}}
-                {{--.catch(function (err) {--}}
-                    {{--console.log('1111111'+err);--}}
-                {{--})--}}
-        {{--},--}}
-
+        methods : {
+            updateData : function(studentid, studentname, selected, sex){
+                location.assign("../public/mypage?flag=update&studentid=" + studentid + "&studentname=" + studentname +"&selected="
+                + selected + "&sex=" + sex);
+                alert("更新成功");
+            }
+        }
     });</script>
 <script type="text/javascript" src="{{asset('static/js/manifest.2ae2e69a05c33dfc65f8.js' )}}"></script>
 <script type="text/javascript" src="{{asset('static/js/vendor.2420502e2b2c7f321d64.js' )}}"></script>

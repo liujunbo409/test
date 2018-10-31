@@ -13,13 +13,28 @@ class IndexController extends Controller
     public function index(request $request)
     {
         $data = $request->all();
+//dd($data);
         $result=array();
-        $result['studentid']= $data['stuid'];
-        $result['studentname']= "老王";
-        $result['school']= "2";
-        $result['sex']= "2";
-        $color = ['2','3'];
-        return view('mypage', ['data' => $result, 'color' => $color]);
+        switch ($data["flag"]){
+            case "login":
+                $result['studentid']= $data['stuid'];
+                $result['studentname']= "老王";
+                $result['school']= "2";
+                $result['sex']= "2";
+                break;
+
+            case "update":
+            $result['studentid']= $data['studentid'];
+            $result['studentname']= $data['studentname'];
+            $result['school']= $data['selected'];
+            $result['sex']= $data['sex'];
+                break;
+                
+            default:
+                break;
+
+        }
+        return view('mypage', ['data' => $result]);
     }
 
 }
