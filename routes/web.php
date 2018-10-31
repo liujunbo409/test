@@ -20,3 +20,7 @@ Route::get('/tttc', function () {
 Route::get('/qqq', function () {
     return view('qqq');
 });
+Route::get('/index', function () {
+    return view('index');
+});
+Route::get('/mypage', 'API\IndexController@index');
